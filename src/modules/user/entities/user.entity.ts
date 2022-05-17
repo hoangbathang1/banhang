@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { RoleType } from '../contants';
-@Entity('account')
+@Entity('user')
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column()
+  @Column({ unique: true })
   username: string;
-  @Column()
+  @Column({ unique: true })
   email: string;
   @Column()
   firstname: string;

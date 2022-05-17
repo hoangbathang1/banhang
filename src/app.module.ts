@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { configurations } from './config/common';
 import { typeormConfig } from './config/database';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { typeormConfig } from './config/database';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(typeormConfig.getTypeOrmConfig()),
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

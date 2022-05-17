@@ -17,7 +17,7 @@ export class UserService {
       if (user) {
         throw new HttpException('Đã tồn tại tên đăng nhập hoặc email', 400);
       }
-      const newUser = this.userRepository.create(user);
+      const newUser = this.userRepository.create(payload);
       return await this.userRepository.save(newUser);
     } catch (error) {
       throw new HttpException(error, 400);
@@ -43,5 +43,19 @@ export class UserService {
       }
       return await this.userRepository.remove(User);
     } catch (error) {}
+  }
+  async finduserbyid(id: number) {
+    try {
+      return await this.userRepository.findOne({ id });
+    } catch (error) {
+      throw new HttpException(error, 400);
+    }
+  }
+  async saveuser(user: UserEntity) {
+    try {
+      return await this.userRepository.save(user);
+    } catch (error) {
+      throw new HttpException(error, 400);
+    }
   }
 }
